@@ -1,30 +1,126 @@
 # Getting Started with RISC-V
 # Exercise 06_05
 # Matrix Displays, by Eduardo Corpeño 
+li a0, 0x100
+la s0, logo
+li s2, 0
+li s3, 10
+outer:
+li s1, 0
+inner:
+lw a2, 0(s0)
+slli a1, s2, 16
+or a1, a1, s1
+ecall
+addi s0, s0, 4
+addi s1, s1, 1
+bne s1, s3, inner
+addi s2, s2, 1
+bne s2, s3, outer
+li a0, 10
+li a1, 0
+ecall
+
 
 .data
-count: .word   0
-str:   .string "RISC-V is the bomb!!!"
-
-.align 2
-.text
-.globl main
-
-
-main:
-    la t0, count        # t0 points to count
-    lw t1, 0(t0)        # t1 implements count
-    la t2, str          # t2 points to *str
-
-while:
-    lb   t3, 0(t2)      # Load *str into t3
-    beqz t3 finish      # if *str==0, go to finish
-    addi t1, t1, 1      # count++;
-    addi t2, t2, 1      # str++;
-    j    while
-
-finish:
-    sw   t1, 0(t0)      # Store t1 into count
-hang:
-    j    hang  # jump to hang
-
+logo:
+.word 0x00000000
+.word 0x000000ff
+.word 0x002A3172
+.word 0x002A3172
+.word 0x002A3172
+.word 0x002A3172
+.word 0x002A3172
+.word 0x002A3172
+.word 0x002A3172
+.word 0x002A3172
+.word 0x00000000
+.word 0x002A3172
+.word 0x002A3172
+.word 0x002A3172
+.word 0x002A3172
+.word 0x00000000
+.word 0x00000000
+.word 0x002A3172
+.word 0x002A3172
+.word 0x002A3172
+.word 0x00000000
+.word 0x002A3172
+.word 0x002A3172
+.word 0x002A3172
+.word 0x002A3172
+.word 0x00000000
+.word 0x00000000
+.word 0x00000000
+.word 0x002A3172
+.word 0x002A3172
+.word 0x00000000
+.word 0x00000000
+.word 0x002A3172
+.word 0x002A3172
+.word 0x00000000
+.word 0x00000000
+.word 0x00F6B21A
+.word 0x00000000
+.word 0x00000000
+.word 0x002A3172
+.word 0x00F6B21A
+.word 0x00000000
+.word 0x00000000
+.word 0x00000000
+.word 0x00000000
+.word 0x00F6B21A
+.word 0x00F6B21A
+.word 0x00F6B21A
+.word 0x00000000
+.word 0x00000000
+.word 0x00F6B21A
+.word 0x00F6B21A
+.word 0x00F6B21A
+.word 0x00F6B21A
+.word 0x00F6B21A
+.word 0x00F6B21A
+.word 0x00F6B21A
+.word 0x00F6B21A
+.word 0x00F6B21A
+.word 0x00000000
+.word 0x00F6B21A
+.word 0x00F6B21A
+.word 0x00F6B21A
+.word 0x00F6B21A
+.word 0x00F6B21A
+.word 0x00F6B21A
+.word 0x00F6B21A
+.word 0x00F6B21A
+.word 0x00000000
+.word 0x00000000
+.word 0x00F6B21A
+.word 0x00F6B21A
+.word 0x00F6B21A
+.word 0x00F6B21A
+.word 0x00F6B21A
+.word 0x00F6B21A
+.word 0x00F6B21A
+.word 0x00000000
+.word 0x00000000
+.word 0x002A3172
+.word 0x00F6B21A
+.word 0x00F6B21A
+.word 0x00F6B21A
+.word 0x00F6B21A
+.word 0x00F6B21A
+.word 0x00F6B21A
+.word 0x00000000
+.word 0x00000000
+.word 0x002A3172
+.word 0x002A3172
+.word 0x00F6B21A
+.word 0x00F6B21A
+.word 0x00F6B21A
+.word 0x00F6B21A
+.word 0x00F6B21A
+.word 0x00000000
+.word 0x00000000
+.word 0x002A3172
+.word 0x002A3172
+.word 0x002A3172

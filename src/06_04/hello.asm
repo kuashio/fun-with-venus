@@ -1,30 +1,16 @@
 # Getting Started with RISC-V
 # Exercise 06_04
 # Hello World, by Eduardo Corpeño 
+jal pollInt
+addi a0, x0, 10 # exit
+ecall
 
-.data
-count: .word   0
-str:   .string "RISC-V is the bomb!!!"
-
-.align 2
-.text
-.globl main
-
-
-main:
-    la t0, count        # t0 points to count
-    lw t1, 0(t0)        # t1 implements count
-    la t2, str          # t2 points to *str
-
-while:
-    lb   t3, 0(t2)      # Load *str into t3
-    beqz t3 finish      # if *str==0, go to finish
-    addi t1, t1, 1      # count++;
-    addi t2, t2, 1      # str++;
-    j    while
-
-finish:
-    sw   t1, 0(t0)      # Store t1 into count
-hang:
-    j    hang  # jump to hang
-
+pollInt:
+addi a0, x0, 0x130 # 0x130 equals parseInt
+addi a5, x0, 0 # we use a5 as our comparison for branching
+addi a1, x0, 0 # we also need to set a1
+ecall
+beq a1, a5, pollInt # if no input was detected both are 0 and we need to keep polling
+addi a0, x0, 1 # If we have input we echo it in the console
+ecall   # If we have input we echo it in the console
+jr ra   # return

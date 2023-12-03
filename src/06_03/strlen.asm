@@ -16,7 +16,7 @@
 count: .word   0
 str:   .string "RISC-V is the bomb!!!"
 
-.align 2
+
 .text
 .globl main
 
