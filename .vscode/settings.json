@@ -1,4 +1,7 @@
 {
     "riscv-venus.variableFormat": "hex",
+    "workbench.colorTheme": "Default Dark Modern",
+    "git.autofetch": true,
+    "explorer.confirmDragAndDrop": false,
     "editor.fontSize": 22
 }
