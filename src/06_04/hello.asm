@@ -21,7 +21,10 @@ while:
     beqz t3 finish      # if *str==0, go to finish
     addi t1, t1, 1      # count++;
     addi t2, t2, 1      # str++;
-    j while
+    j    while
 
 finish:
     sw   t1, 0(t0)      # Store t1 into count
+hang:
+    j    hang  # jump to hang
+

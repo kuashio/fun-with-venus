@@ -26,5 +26,5 @@ while:
 finish:
     sw   t1, 0(t0)      # Store t1 into count
 hang:
-    c.j  hang  # jump to hang
+    j    hang  # jump to hang
 
